@@ -37,19 +37,19 @@ async function fetchUserSync(token) {
             },
             method: "POST",
             body: JSON.stringify({
-                "dataCheckChain": "query_id=AAFByvVBAAAAAEHK9UFihEHF&user=%7B%22id%22%3A1106627137%2C%22first_name%22%3A%22Kang%20Lose%22%2C%22last_name%22%3A%22%7C%20HCA%20%F0%9F%8D%85%22%2C%22username%22%3A%22Naxdumay%22%2C%22language_code%22%3A%22en%22%2C%22allows_write_to_pm%22%3Atrue%7D&auth_date=1726941143&hash=4ce19c09499b3e5c523a28145a4a198d67eec3eff21070b6614451973499f735",
+                "dataCheckChain": "",
                 "initData": {
-                    "query_id": "AAFByvVBAAAAAEHK9UFihEHF",
+                    "query_id": "",
                     "user": {
                         "id": 1106627137,
-                        "first_name": "Kang Lose",
-                        "last_name": "| HCA 🍅",
-                        "username": "Naxdumay",
+                        "first_name": "",
+                        "last_name": "",
+                        "username": "",
                         "language_code": "en",
                         "allows_write_to_pm": true
                     },
-                    "auth_date": "1726941143",
-                    "hash": "4ce19c09499b3e5c523a28145a4a198d67eec3eff21070b6614451973499f735"
+                    "auth_date": "",
+                    "hash": ""
                 }
             })
         });
