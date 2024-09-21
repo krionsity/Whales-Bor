@@ -60,7 +60,6 @@ async function fetchUserSync(token) {
             // Ekstrak informasi yang diperlukan
             const username = data.user.username || "Tidak diketahui";
             const totalClicks = data.meta.totalClicks || 0;
-            const nextSpinAt = data.meta.nextSpinAt || "Tidak ada info";
 
             return { username, totalClicks }; // Mengembalikan objek dengan username dan totalClicks
         } else {
@@ -89,6 +88,18 @@ async function claimDailyBonus(token) {
     } else {
         console.log("Gagal mengklaim bonus harian.");
     }
+}
+
+// Fungsi untuk klaim bonus harian setiap 24 jam
+function startDailyBonusClaimLoop(tokens) {
+    setInterval(async () => {
+        console.log("Memulai klaim bonus harian untuk semua akun...");
+        for (let i = 0; i < tokens.length; i++) {
+            const token = tokens[i];
+            await claimDailyBonus(token); // Klaim bonus harian untuk setiap akun
+        }
+        console.log("Selesai klaim bonus harian.");
+    }, 24 * 60 * 60 * 1000); // 24 jam dalam milidetik (24 jam = 86.400.000 milidetik)
 }
 
 // Fungsi untuk melakukan clicker dan memperbarui tabel
@@ -160,6 +171,9 @@ async function main() {
             // Tambah baris ke tabel untuk akun ini
             table.push([i + 1, username, totalClicks]);
         }
+
+        // Mulai klaim bonus harian setiap 24 jam
+        startDailyBonusClaimLoop(tokens);
 
         // Langkah 2: Clear logs dan jalankan fungsi clicker untuk semua akun
         console.clear(); // Bersihkan log
